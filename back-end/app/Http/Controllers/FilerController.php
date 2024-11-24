@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
+use App\Models\User;
+use App\Models\Workspace;
 
 class FilerController extends Controller{
     public function __invoke(Request $request){
@@ -26,6 +28,10 @@ class FilerController extends Controller{
         return response()->json([
             "message" => "file uploaded successfully"
         ]);
+    }
+    public function getFile($id, Request $request){
+        $user = User::find("id");
+
     }
     
 }
