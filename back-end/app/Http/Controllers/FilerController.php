@@ -30,8 +30,28 @@ class FilerController extends Controller{
         ]);
     }
     public function getFile($id, Request $request){
-        $user = User::find("id");
-
+        $workspace = Workspace::where("id", $request->workspace_id)->first();
+        if(!$workspace){
+            return response()->json([
+                "error" => "unauthorized"
+            ]);
+        }
+        $file = File::find($id);
+        if(!$file){
+            return response()->json([
+                "error" => "not found"
+            ]);
+        }
+        $filename = $file->name;
+        $filepath = $file->path;
+        if(!Storage::exists($filepath) || $filename!=$request->name){
+            return response()->json([
+                "error" => "file not found"
+            ]);
+        }
+        
+        return Storage::download($filepath);
+        
     }
     
 }

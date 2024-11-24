@@ -12,3 +12,4 @@ use App\Http\Controllers\FilerController;
 
 //Route::post("/filler", [FilerController::class, "__invoke"]);
 Route::post("/upload_file", [FilerController::class, "uploadFile"]);
+Route::post("/get_file/{id}", [FilerController::class, "getFile"]);
