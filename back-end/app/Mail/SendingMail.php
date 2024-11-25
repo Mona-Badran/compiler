@@ -16,7 +16,7 @@ class SendingMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public array $data)
     {
         //
     }
@@ -27,7 +27,7 @@ class SendingMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Sending Mail',
+            subject: 'Email Invitation to workspace/file',
         );
     }
 
@@ -37,7 +37,7 @@ class SendingMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'post-mail',
         );
     }
 
