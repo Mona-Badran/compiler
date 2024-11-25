@@ -30,12 +30,21 @@ class FilerController extends Controller{
             "message" => "file uploaded successfully"
         ]);
     }
-    public function displayLandingScreen(Request $request){
-        $workspace = Workspace::where("id", $request->user_id);
-
-
-
+    public function displayOwnedLandingScreen(Request $request){
+        $workspaceNames = Workspace::where("users_id", $request->user_id)->pluck("name"); //owner
+        return response()->json([
+            'workspaces' => $workspaceNames
+        ]);
     }
+
+    public function displayCollabLandingScreen(Request $request){
+        $collabWorkspaceId= Collaboration::where("users_id", $request->user_id)->pluck("workspaces_id");
+        $workspaceNames = Workspace::where("id", $collabWorkspaceId)->pluck("name");
+        return response()->json([
+            'workspaces' => $workspaceNames
+        ]);
+    }
+
     public function getFile($id, Request $request){
         $workspace = Workspace::where("id", $request->workspace_id)
                                     ->where("user_id", $request->user_id)
@@ -65,6 +74,6 @@ class FilerController extends Controller{
         return Storage::download($filepath);
         
     }
-    public function getWorkSpace($id, )
+    
     
 }

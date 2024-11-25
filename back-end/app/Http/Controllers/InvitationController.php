@@ -17,13 +17,20 @@ class InvitationController extends Controller{
         $invitation = new Invitation;
         $invitation->sender_id = $request->sender_id;
         $invitation->recipient_email = $request->recipient_email;
-        $invitation->file_id = $request->file_id; //to be changed
+        $invitation->workspaces_id = $request->workspaces_id; //to be changed
         $invitation->status = $request->status; //to be removed
         $invitation->save();
 
         Mail::to($invitation->recipient_email)->send(new SendingMail([
-            "file" => $request->file_id
+            "workspace" => $request->workspaces_id
         ]));
+        $recipient_user = User::where("email", $request->recipient_email)->first();
+        
+        $collaboration = new Collaboration;
+        $collaboration->users_id = $recipient_user->id;
+        $collaboration->workspaces_id = $request->workspaces_id;
+        $collaboration->invitations_id = $invitation->id;
+        
     }
 
 
