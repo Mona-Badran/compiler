@@ -7,7 +7,7 @@ use App\Http\Controllers\FilerController;
 
 
 // Route::get('/user', function (Request $request) {
-//     return $request->user();
+//     return $request->user();S
 // })->middleware('auth:sanctum');
 
 //Route::post("/filler", [FilerController::class, "__invoke"]);
