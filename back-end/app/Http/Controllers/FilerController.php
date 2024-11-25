@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\File;
 use App\Models\User;
 use App\Models\Workspace;
+use App\Models\Invitation;
 
 class FilerController extends Controller{
     public function __invoke(Request $request){
@@ -30,7 +31,7 @@ class FilerController extends Controller{
         ]);
     }
     public function getFile($id, Request $request){
-        $workspace = Workspace::where("id", $request->workspace_id)->first();
+        $Invitationfile = Collaboration::where("id", $request->workspace_id)->first();
         if(!$workspace){
             return response()->json([
                 "error" => "unauthorized"
