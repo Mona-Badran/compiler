@@ -11,6 +11,14 @@ use App\Http\Controllers\InvitationController;
 // })->middleware('auth:sanctum');
 
 //Route::post("/filler", [FilerController::class, "__invoke"]);
-Route::post("/upload_file", [FilerController::class, "uploadFile"]);
-Route::post("/get_file/{id}", [FilerController::class, "getFile"]);
+
+//assume there are log in and sign up
+Route::post("/upload_file", [FilerController::class, "uploadFile"]); //ma ela aaze iza aana realtime
+
+Route::post("/landing_page", [FilerController::class, "displayLandingScreen"]);
+Route::post("/get_work_space/{id}", [FilerController::class, "getWorkSpace"]);
+Route::post("/get_file/{id}", [FilerController::class, "getFile"]); //inside a work space
 Route::post("/send_email", [InvitationController::class, "sendEmail"]);
+//get workspace (for both user and collaberators)
+//in landing page show the workspace for user
+//in landing page show the workspace for invited

@@ -30,6 +30,12 @@ class FilerController extends Controller{
             "message" => "file uploaded successfully"
         ]);
     }
+    public function displayLandingScreen(Request $request){
+        $workspace = Workspace::where("id", $request->user_id);
+
+
+
+    }
     public function getFile($id, Request $request){
         $workspace = Workspace::where("id", $request->workspace_id)
                                     ->where("user_id", $request->user_id)
@@ -59,5 +65,6 @@ class FilerController extends Controller{
         return Storage::download($filepath);
         
     }
+    public function getWorkSpace($id, )
     
 }
