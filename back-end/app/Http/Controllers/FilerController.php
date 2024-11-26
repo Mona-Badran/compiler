@@ -46,27 +46,27 @@ class FilerController extends Controller{
         ]);
     }
 
-    public function getFile($id, Request $request){
-        $workspace = Workspace::where("id", $request->workspace_id)
-                                    ->where("user_id", $request->user_id)
-                                    ->first(); //here im checking if the workspace the user is in is the same as the work space that the user created
-        $collaborator = Collaboration::where("file_id", $id)
-                                        ->where("user_id", $request->user_id)
-                                        ->first(); //here im checking if the user_id requesting the file is one of the collaborators rather than the owners
-        if(!$workspace && !$collaborator){ 
-            return response()->json([
-                "error" => "unauthorized"
-            ]);
-        }
+    public function getFile($id){
+        // $workspace = Workspace::where("id", $request->workspace_id)
+        //                             ->where("user_id", $request->user_id)
+        //                             ->first(); //here im checking if the workspace the user is in is the same as the work space that the user created
+        // $collaborator = Collaboration::where("file_id", $id)
+        //                                 ->where("user_id", $request->user_id)
+        //                                 ->first(); //here im checking if the user_id requesting the file is one of the collaborators rather than the owners
+        // if(!$workspace && !$collaborator){ 
+        //     return response()->json([
+        //         "error" => "unauthorized"
+        //     ]);
+        // }
         $file = File::find($id);
         if(!$file){
             return response()->json([
                 "error" => "not found"
             ]);
         }
-        $filename = $file->name;
+        //$filename = $file->name;
         $filepath = $file->path;
-        if(!Storage::exists($filepath) || $filename!=$request->name){
+        if(!Storage::exists($filepath)){
             return response()->json([
                 "error" => "file not found"
             ]);
@@ -87,6 +87,7 @@ class FilerController extends Controller{
             "workspace files" => $workspaceFiles
         ]);
     }
+
     
     
 }
