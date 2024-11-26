@@ -18,7 +18,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post("/get_work_space/{id}", [FilerController::class, "getWorkSpace"]); 
     Route::post("/get_file/{id}", [FilerController::class, "getFile"]);
 
-    Route::post("/upload_file", [FilerController::class, "uploadFile"]);
+    Route::post("/upload_new_file", [FilerController::class, "uploadNewFile"]);
 
     Route::middleware([WorkspaceOwnerAuth::class])->group(function () {
         Route::post("/display_collabs", [InvitationController::class, "displayCollaborators"]); 

@@ -18,7 +18,7 @@ class FilerController extends Controller{
         //$path = Storage::putFile('file-storage', $file);
     }
 
-    public function uploadFile(Request $request){
+    public function uploadNewFile(Request $request){
         $file = new File;
         $file->workspaces_id = $request->workspaces_id;
         $file->name = $request->name;
@@ -29,21 +29,21 @@ class FilerController extends Controller{
         
         return response()->json([
             "message" => "file uploaded successfully"
-        ]);
+        ],200);
     }
     public function displayOwnedLandingScreen(Request $request){
-        $workspaceNames = Workspace::where("users_id", $request->user_id)->pluck("name"); //owner
+        $workspaceNames = Workspace::where("users_id", $request->user_id)->get(["id","name"]); //owner
         return response()->json([
             'workspaces' => $workspaceNames
-        ]);
+        ],200);
     }
 
     public function displayCollabLandingScreen(Request $request){
         $collabWorkspaceId= Collaboration::where("users_id", $request->user_id)->pluck("workspaces_id");
-        $workspaceNames = Workspace::whereIn("id", $collabWorkspaceId)->pluck("name");
+        $workspaceNames = Workspace::whereIn("id", $collabWorkspaceId)->get(["id","name"]);
         return response()->json([
             'workspaces' => $workspaceNames
-        ]);
+        ],200);
     }
 
     public function getFile($id){
@@ -62,14 +62,14 @@ class FilerController extends Controller{
         if(!$file){
             return response()->json([
                 "error" => "not found"
-            ]);
+            ],404);
         }
         //$filename = $file->name;
         $filepath = $file->path;
         if(!Storage::exists($filepath)){
             return response()->json([
                 "error" => "file not found"
-            ]);
+            ],404);
         }
         
         return Storage::download($filepath);
@@ -77,11 +77,11 @@ class FilerController extends Controller{
     }
 
     public function getWorkSpace($id){
-        $workspaceFiles = File::where("workspaces_id", $id)->pluck("name");
-        if(!$workspaceFiles){
+        $workspaceFiles = File::where("workspaces_id", $id)->get(["id","name"]);
+        if($workspaceFiles->isEmpty()){
             return response()->json([
                 "error" => "files not found"
-            ]);
+            ],404);
         }
         return response()->json([
             "workspace files" => $workspaceFiles
