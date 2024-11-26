@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class JWTAuthController extends Controller{
         $token = JWTAuth::fromUser($user);
 
         return response()->json([
-            "user" => $user, 
+            "username" => $user, 
             "token" => $token
         ], 201);
     }
@@ -40,7 +40,7 @@ class JWTAuthController extends Controller{
             $user = Auth::user();
 
             return response()->json([
-                "user" => $user, 
+                "username" => $user, 
                 "token" => $token
             ], 201);
 
