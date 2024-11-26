@@ -8,6 +8,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\Workspace;
 use App\Models\Invitation;
+use App\Models\Collaboration;
 
 class FilerController extends Controller{
     public function __invoke(Request $request){
@@ -39,7 +40,7 @@ class FilerController extends Controller{
 
     public function displayCollabLandingScreen(Request $request){
         $collabWorkspaceId= Collaboration::where("users_id", $request->user_id)->pluck("workspaces_id");
-        $workspaceNames = Workspace::where("id", $collabWorkspaceId)->pluck("name");
+        $workspaceNames = Workspace::whereIn("id", $collabWorkspaceId)->pluck("name");
         return response()->json([
             'workspaces' => $workspaceNames
         ]);

@@ -15,7 +15,9 @@ use App\Http\Controllers\InvitationController;
 //assume there are log in and sign up
 Route::post("/upload_file", [FilerController::class, "uploadFile"]); //ma ela aaze iza aana realtime
 
-Route::post("/landing_page", [FilerController::class, "displayOwnedLandingScreen"]);
+Route::post("/get_your_ws", [FilerController::class, "displayOwnedLandingScreen"]);
+Route::post("/get_coll_ws", [FilerController::class, "displayCollabLandingScreen"]);
+
 Route::post("/get_work_space/{id}", [FilerController::class, "getWorkSpace"]);
 Route::post("/get_file/{id}", [FilerController::class, "getFile"]); //inside a work space
 Route::post("/send_email", [InvitationController::class, "sendEmail"]);
