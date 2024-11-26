@@ -20,7 +20,7 @@ class FilerController extends Controller{
 
     public function uploadFile(Request $request){
         $file = new File;
-        $file->workspace_id = $request->workspace_id;
+        $file->workspaces_id = $request->workspaces_id;
         $file->name = $request->name;
 
         $path = $request->file('path')->store('file-storage');
@@ -74,6 +74,18 @@ class FilerController extends Controller{
         
         return Storage::download($filepath);
         
+    }
+
+    public function getWorkSpace($id){
+        $workspaceFiles = File::where("workspaces_id", $id)->pluck("name");
+        if(!$workspaceFiles){
+            return response()->json([
+                "error" => "files not found"
+            ]);
+        }
+        return response()->json([
+            "workspace files" => $workspaceFiles
+        ]);
     }
     
     
