@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilerController;
 use App\Http\Controllers\InvitationController;
 
+use App\Http\Controllers\Auth\JWTAuthController;
+
 // Route::get('/user', function (Request $request) {
 //     return $request->user();S
 // })->middleware('auth:sanctum');
 
 //Route::post("/filler", [FilerController::class, "__invoke"]);
+Route::post("/register", [JWTAuthController::class, "register"]);
+Route::post("/login", [JWTAuthController::class, "login"]);
 
-//assume there are log in and sign up
 Route::post("/upload_file", [FilerController::class, "uploadFile"]); //ma ela aaze iza aana realtime
 
 Route::post("/get_your_ws", [FilerController::class, "displayOwnedLandingScreen"]);
