@@ -65,6 +65,20 @@ class InvitationController extends Controller{
         
     }
 
+    public function displayCollaborators(Request $request){
+        $emailDisplay = Invitation::where("workspaces_id", $request->workspaces_id)->pluck("recipient_email");
+        if($emailDisplay->isEmpty()){
+            return response()->json([
+                "error" => "no collaborators in this work space"
+            ],404);
+        }
+        return response()->json([
+            "collaborators" => $emailDisplay
+        ]);
+    }
+
+
+
     public function changeRole(Request $request){
         $recipient_user = User::where("email", $request->recipient_email)->first();
         if(!$recipient_user){
@@ -94,7 +108,7 @@ class InvitationController extends Controller{
 
         return response()->json([
             "message" => "Role updated successfully"
-        ]);
+        ],200);
 
     }
 
