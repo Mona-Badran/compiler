@@ -11,7 +11,6 @@ class CreateInvitationsTable extends Migration
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->string('recipient_email', 45);
-            $table->enum('status', ['pending', 'accepted', 'declined']);
             $table->foreignId('workspaces_id')->constrained('workspaces')->onDelete('cascade');
             $table->timestamps();
         });
