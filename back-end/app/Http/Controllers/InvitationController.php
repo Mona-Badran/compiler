@@ -17,8 +17,14 @@ use App\Models\Collaboration;
 class InvitationController extends Controller{
     public function sendEmail(Request $request){
         
-        //i want to check if the reciever email
-        //created the workspaces that he is inviting others to
+        $workspaceInvite = Workspace::where("users_id", $request->sender_id)
+                                        ->where("id", $request->workspaces_id)
+                                        ->first();
+        if(!$workspaceInvite){
+            return response()->json([
+                "error" => "you dont own the workspace that you are inviting others to"
+            ],404);
+        }
 
         $recipient_user = User::where("email", $request->recipient_email)->first();
         if(!$recipient_user){
