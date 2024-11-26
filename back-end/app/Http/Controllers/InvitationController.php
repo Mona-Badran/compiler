@@ -65,6 +65,39 @@ class InvitationController extends Controller{
         
     }
 
+    public function changeRole(Request $request){
+        $recipient_user = User::where("email", $request->recipient_email)->first();
+        if(!$recipient_user){
+            return response()->json([
+                "error" => "email not found"
+            ],404);
+        }
+        
+        $collaboration = Collaboration::where("workspaces_id", $request->workspaces_id)
+                                        ->where("users_id", $recipient_user->id)
+                                        ->first();
+
+        if ($collaboration->role == $request->role){
+            return response()->json([
+                "error" => "The invited user is already in ". $request->role ." role"
+            ],400);
+        }
+        
+        if (!in_array($request->role, ['Edit', 'View'])) {
+            return response()->json([
+                "error" => "only assign 'Edit' or 'View'."
+            ], 400);
+        }
+
+        $collaboration->role = $request->role;
+        $collaboration->save();
+
+        return response()->json([
+            "message" => "Role updated successfully"
+        ]);
+
+    }
+
 
 
 }
