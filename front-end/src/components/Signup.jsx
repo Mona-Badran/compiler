@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import './Auth.css';
 
 const Signup=() => {
-    // const Navigate = useNavigate();
+    const Navigate = useNavigate();
     const [error, setError] = useState("")
     const [SignupForm, setSignupForm] = useState({
         username: "",
@@ -69,7 +69,7 @@ const Signup=() => {
                             password: "",
                             confirmPassword: "",
                         });
-                        // navigate("/jp")
+                        Navigate("/signin")
                     }).catch((error)=>{
                         setError(error.response.data.status)
                     });

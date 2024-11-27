@@ -20,7 +20,7 @@ const Signin = () => {
             setMessage({ error: '', success: response.message || 'Signin successful!' });
             localStorage.setItem('auth_token', response.token);
         } catch (error) {
-            setMessage({ error: error.message || 'Invalid credentials!', success: '' });
+            setMessage({ error: error , success: '' });
         }
     };
 
