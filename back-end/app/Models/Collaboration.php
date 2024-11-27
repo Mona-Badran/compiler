@@ -10,7 +10,7 @@ class Collaboration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'file_id',
+        'workspace_id',
         'user_id',
         'invitation_id',
         'role',
