@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login=() => {
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
     const [error, setError] = useState("")
     const [loginForm, setLoginForm] = useState({
         username :"",
@@ -31,6 +31,15 @@ const Login=() => {
                         password:e.target.value,
                     });
                 }}/>
+                <p>Don't have an account?{" "}
+                    <span style={{
+                            color: "blue",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => Navigate("/register")}
+                    >Register</span>
+                </p>
                 <button onClick={()=>{
                     setError("");
                     const data = new FormData();
@@ -55,9 +64,9 @@ const Login=() => {
 
                     }).catch((error)=>{
                         console.log(error.data.error)
-                        //setError(error.response.data.status)
                     });
                 }}>Login</button>
+                
                 {error && <p>{error}</p>}
             </form>
         </div>

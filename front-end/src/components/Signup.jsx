@@ -69,7 +69,7 @@ const Signup=() => {
                             password: "",
                             confirmPassword: "",
                         });
-                        Navigate("/signin")
+                        Navigate("/login")
                     }).catch((error)=>{
                         setError(error.response.data.status)
                     });

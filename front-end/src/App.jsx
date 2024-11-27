@@ -9,13 +9,14 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Navigate to="/signin" replace />} />
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/register" element={<Signup />} />
+                <Route path="/login" element={<Signin />} />
                 <Route
                     path="/dashboard"
                     element={
                         <ProtectedRoute>
+                            {/* <Route path="/signup" element={<Signup />} /> */}
                             <Dashboard />
                         </ProtectedRoute>
                     }
