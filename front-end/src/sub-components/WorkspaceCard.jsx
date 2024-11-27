@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const WorkspaceCard = ({dash}) => {
+const WorkspaceCard = ({file}) => {
     const navigate = useNavigate();
-    const {id , name} = dash;
+    const {id , name} = file;
 
     return(
         <div>
