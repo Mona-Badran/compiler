@@ -87,9 +87,10 @@ class FilerController extends Controller{
             ],404);
         }
         
-        $content = Storage::download($filepath);
+        $content = Storage::get($filepath);
+
         return response()->json([
-            "content"=>$content
+            "content" => $content
         ]);
         
     }

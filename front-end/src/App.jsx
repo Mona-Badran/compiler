@@ -30,14 +30,14 @@ const App = () => {
                         </ProtectedRoute>
                     }
                 />
-                {/* <Route
+                <Route
                     path="/file/:id"
                     element={
                         <ProtectedRoute>
                             <WorkspaceFileCard />
                         </ProtectedRoute>
                     }
-                /> */}
+                />
             </Routes>
         </Router>
     );
