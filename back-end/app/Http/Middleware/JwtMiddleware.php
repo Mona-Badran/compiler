@@ -16,7 +16,7 @@ class JwtMiddleware
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Token iss invalid or missing'], 401);
+            return response()->json(['error' => 'Token is invalid or missing'], 401);
         }
 
         return $next($request);

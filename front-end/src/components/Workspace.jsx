@@ -8,9 +8,14 @@ const Workspace = () => {
 
     const loadWorkspaceDetails = () => {
         axios
-            .get(`http://127.0.0.1:8000/api/get_work_space/${encodeURIComponent(id)}`)
+            .post(`http://127.0.0.1:8000/api/get_work_space/${encodeURIComponent(id)}`,{},{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
             .then((response) => {
                 setWorkFiles(response.data.workspacefiles);
+                console.log(response.data.workspacefiles)
             })
             .catch((err) => {
                 console.error("Error fetching workspace files", err);
@@ -20,7 +25,7 @@ const Workspace = () => {
     useEffect(() => {
         loadWorkspaceDetails();
     }, [id]);
-
+    console.log()
     return (
         <div>
             <h2>Workspace Files</h2>
