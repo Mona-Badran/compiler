@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import DashboardCard from "../sub-components/DashboardCard.jsx"
 
 const Dashboard = () => {
   const [yourWorkspaces, setYourWorkspaces] = useState([]);
@@ -49,7 +50,8 @@ const Dashboard = () => {
           <h3>Your Workspaces</h3>
           <ul>
             {yourWorkspaces.map((workspace) => (
-              <li key={workspace.id}>{workspace.name}</li>
+              <DashboardCard dash={workspace} key={workspace.id} />
+              // <li key={workspace.id}>{workspace.name}</li>
             ))}
           </ul>
         </div>
@@ -57,7 +59,8 @@ const Dashboard = () => {
           <h3>Collaborated Workspaces</h3>
           <ul>
             {collWorkspaces.map((workspace) => (
-              <li key={workspace.id}>{workspace.name}</li>
+              <DashboardCard dash={workspace} key={workspace.id} />
+              // <li key={workspace.id}>{workspace.name}</li>
             ))}
           </ul>
         </div>
