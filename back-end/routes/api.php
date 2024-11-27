@@ -16,7 +16,7 @@ use App\Http\Middleware\WorkspaceOwnerMiddleware;
 //Route::post("/filler", [FilerController::class, "__invoke"]);
 Route::post("/register", [JWTAuthController::class, "register"]);
 Route::post("/login", [JWTAuthController::class, "login"]);
-
+Route::post("/upload_file", [FilerController::class, "uploadNewFile"]);
 
 Route::middleware([JwtMiddleware::class])->group(function () {
 
@@ -28,7 +28,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post("/get_file/{id}", [FilerController::class, "getFile"]); 
 
     
-    Route::post("/upload_file", [FilerController::class, "uploadFile"]);
+    
 
     
     Route::middleware([WorkspaceOwnerMiddleware::class])->group(function () {

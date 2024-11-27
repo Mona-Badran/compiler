@@ -21,6 +21,7 @@ class FilerController extends Controller{
     }
 
     public function uploadNewFile(Request $request){
+        //$user = JWTAuth::parseToken()->authenticate();
         $file = new File;
         $file->workspaces_id = $request->workspaces_id;
         $file->name = $request->name;
@@ -98,7 +99,7 @@ class FilerController extends Controller{
             ],404);
         }
         return response()->json([
-            "workspace files" => $workspaceFiles
+            "workspacefiles" => $workspaceFiles
         ]);
     }
 
