@@ -17,7 +17,7 @@ const Dashboard = () => {
       setYourWorkspaces(response.data.workspaces);
       //console.log(response.data.workspaces)
     }).catch((error)=>{
-      console.log(error)
+      console.log("error")
     })
   }
   useEffect(()=>{
@@ -34,7 +34,7 @@ const Dashboard = () => {
       setCollWorkspaces(response.data.workspaces);
       //console.log(response.data.workspaces)
     }).catch((error)=>{
-      console.log(error)
+      console.log("error")
     })
   }
   useEffect(()=>{
