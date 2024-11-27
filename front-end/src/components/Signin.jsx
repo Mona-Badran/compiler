@@ -24,7 +24,7 @@ const Login=() => {
                         ...loginForm,
                         username: e.target.value,
                     });
-                }}/>
+                }}/>    
                 <input type="password" placeholder="Password" onChange={(e)=>{
                     setLoginForm({
                         ...loginForm,
@@ -40,7 +40,8 @@ const Login=() => {
                         onClick={() => Navigate("/register")}
                     >Register</span>
                 </p>
-                <button onClick={()=>{
+                <button type="button" onClick={()=>{
+                    
                     setError("");
                     const data = new FormData();
                     data.append("username", loginForm.username)
@@ -60,6 +61,7 @@ const Login=() => {
                             username :"",
                             password:""
                         });
+                        Navigate("/dashboard");
 
 
                     }).catch((error)=>{

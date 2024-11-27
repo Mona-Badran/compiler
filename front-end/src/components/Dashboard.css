@@ -1,0 +1,27 @@
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly   ;
+    width: 100%;
+}
+.workspace-section{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    align-items: start;
+    justify-content: space-evenly;
+    text-align: center;
+
+}
+.owned-ws .collab-ws{
+    width: 100%;
+    text-align: center;
+}
+.owned-ws ul, .collab-ws ul {
+    list-style: none;
+    text-align: center;
+
+}
+

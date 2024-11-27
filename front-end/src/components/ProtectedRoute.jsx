@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem('auth_token');
-    return token ? children : <Navigate to="/signin" />;
+    const token = localStorage.getItem('token'); // Ensure you are using the correct key for the token
+    return token ? children : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
