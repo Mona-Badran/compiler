@@ -5,6 +5,7 @@ import Signin from "./components/Signin";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Workspace from "./components/Workspace";
+import WorkspaceFileCard from "./sub-components/WorkspaceFileCard";
 
 const App = () => {
     return (
@@ -29,6 +30,14 @@ const App = () => {
                         </ProtectedRoute>
                     }
                 />
+                {/* <Route
+                    path="/file/:id"
+                    element={
+                        <ProtectedRoute>
+                            <WorkspaceFileCard />
+                        </ProtectedRoute>
+                    }
+                /> */}
             </Routes>
         </Router>
     );
