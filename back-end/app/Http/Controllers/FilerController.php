@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Workspace;
 use App\Models\Invitation;
 use App\Models\Collaboration;
+use Tymon\JWTAuth\Facades\JWTAuth; 
+
 
 class FilerController extends Controller{
     public function __invoke(Request $request){
@@ -31,16 +33,28 @@ class FilerController extends Controller{
             "message" => "file uploaded successfully"
         ],200);
     }
-    public function displayOwnedLandingScreen(Request $request){
-        $workspaceNames = Workspace::where("users_id", $request->user_id)->get(["id","name"]); //owner
+    public function displayOwnedLandingScreen(){
+        $user = JWTAuth::parseToken()->authenticate();
+        $workspaceNames = Workspace::where("users_id", $user->id)->get(["id","name"]); //owner
+        if($workspaceNames->isEmpty()){
+            return response()->json([
+                "error" => "no owned workspace"
+            ]);
+        }
         return response()->json([
             'workspaces' => $workspaceNames
         ],200);
     }
 
-    public function displayCollabLandingScreen(Request $request){
-        $collabWorkspaceId= Collaboration::where("users_id", $request->user_id)->pluck("workspaces_id");
+    public function displayCollabLandingScreen(){
+        $user = JWTAuth::parseToken()->authenticate();
+        $collabWorkspaceId= Collaboration::where("users_id", $user->id)->pluck("workspaces_id");
         $workspaceNames = Workspace::whereIn("id", $collabWorkspaceId)->get(["id","name"]);
+        if($workspaceNames->isEmpty()){
+            return response()->json([
+                "error" => "no owned workspace"
+            ]);
+        }
         return response()->json([
             'workspaces' => $workspaceNames
         ],200);
