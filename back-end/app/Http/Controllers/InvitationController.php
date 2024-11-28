@@ -16,8 +16,8 @@ use App\Models\Collaboration;
 
 class InvitationController extends Controller{
     public function sendEmail(Request $request){
-        
-        $workspaceInvite = Workspace::where("users_id", $request->sender_id)
+        $user = JWTAuth::parseToken()->authenticate();
+        $workspaceInvite = Workspace::where("users_id", $user->id)
                                         ->where("id", $request->workspaces_id)
                                         ->first();
         if(!$workspaceInvite){
@@ -44,10 +44,10 @@ class InvitationController extends Controller{
         }
 
         $invitation = new Invitation;
-        $invitation->sender_id = $request->sender_id;
+        $invitation->sender_id = $user->id;
         $invitation->recipient_email = $request->recipient_email;
         $invitation->workspaces_id = $request->workspaces_id; //to be changed
-        $invitation->status = $request->status; //to be removed
+        //$invitation->status = $request->status; //to be removed
         $invitation->save();
 
         Mail::to($invitation->recipient_email)->send(new SendingMail([
