@@ -39,7 +39,11 @@ const Workspace = () => {
                     
                     ))}
                 </ul>
+                <button onClick={() => navigate(`/workspace/${id}/add-collaborators`)}>
+                    Add Collaborators
+                </button>
             </div>
+            
             <div className="workspace-compiler">
                 <div className="placeholder">
                     <p>Select a file to view its content</p>
