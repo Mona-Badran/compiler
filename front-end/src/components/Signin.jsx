@@ -65,7 +65,8 @@ const Login=() => {
 
 
                     }).catch((error)=>{
-                        console.log(error.data.error)
+                        console.log("error")
+                        
                     });
                 }}>Login</button>
                 
