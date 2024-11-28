@@ -44,29 +44,27 @@ const Dashboard = () => {
 
   return (
     <div className="landing-page">
-      <h1>Dashboard</h1>
-      <div className="workspace-section">
-        <div className="owned-ws">
-          <h3>Your Workspaces</h3>
-          <ul>
-            {yourWorkspaces.map((workspace) => (
-              <DashboardCard dash={workspace} key={workspace.id} />
-              // <li key={workspace.id}>{workspace.name}</li>
-            ))}
-          </ul>
+        <h1>Dashboard</h1>
+        <div className="workspace-section">
+            <div className="owned-ws">
+                <h3>Your Workspaces</h3>
+                <ul>
+                    {yourWorkspaces.map((workspace) => (
+                        <DashboardCard dash={workspace} key={workspace.id} />
+                    ))}
+                </ul>
+            </div>
+            <div className="collab-ws">
+                <h3>Collaborated Workspaces</h3>
+                <ul>
+                    {collWorkspaces.map((workspace) => (
+                        <DashboardCard dash={workspace} key={workspace.id} />
+                    ))}
+                </ul>
+            </div>
         </div>
-        <div className="collab-ws">
-          <h3>Collaborated Workspaces</h3>
-          <ul>
-            {collWorkspaces.map((workspace) => (
-              <DashboardCard dash={workspace} key={workspace.id} />
-              // <li key={workspace.id}>{workspace.name}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
     </div>
-  )
+);
 }
 
 export default Dashboard
