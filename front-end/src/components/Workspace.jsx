@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import WorkspaceCard from "../sub-components/WorkspaceCard";
 import "./Workspace.css"; 
+import { useNavigate } from "react-router-dom";
 
 const Workspace = () => {
     const { id } = useParams(); 
     const [workFiles, setWorkFiles] = useState([]);
+    const navigate = useNavigate();
 
     const loadWorkspaceDetails = () => {
         axios
@@ -39,11 +41,10 @@ const Workspace = () => {
                     
                     ))}
                 </ul>
-                <button onClick={() => navigate(`/workspace/${id}/add-collaborators`)}>
+                <button onClick={() => navigate(`/add-collaborators/${id}`)}>
                     Add Collaborators
                 </button>
             </div>
-            
             <div className="workspace-compiler">
                 <div className="placeholder">
                     <p>Select a file to view its content</p>
