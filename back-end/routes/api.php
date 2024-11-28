@@ -28,14 +28,10 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post("/get_file/{id}", [FilerController::class, "getFile"]); 
 
     
-    
 
-    
-    Route::middleware([WorkspaceOwnerMiddleware::class])->group(function () {
-        Route::post("/display_collabs", [InvitationController::class, "displayCollaborators"]);
-        Route::post("/send_email", [InvitationController::class, "sendEmail"]); 
-        Route::post("/change_role", [InvitationController::class, "changeRole"]); 
-    });
+    Route::post("/display_collabs", [InvitationController::class, "displayCollaborators"]);
+    Route::post("/send_email", [InvitationController::class, "sendEmail"]); 
+    Route::post("/change_role", [InvitationController::class, "changeRole"]); 
 
 
 
