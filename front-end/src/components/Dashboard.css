@@ -61,12 +61,11 @@
 .dashboard-card h5 {
     margin: 0;
     font-size: 1rem;
-    color: greenyellow;
 }
 
 .dashboard-card:hover {
     background-color: #444;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
